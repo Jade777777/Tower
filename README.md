@@ -1,3 +1,5 @@
 # Tower
 A project created for COM419!
-Try edditing this file and then make a pull request!
+
+This is a proposed change to the tower! 
+You can see pull requests other people have made and comment on them as well.
