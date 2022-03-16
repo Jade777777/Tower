@@ -6,7 +6,7 @@ using System;
 public class SlimeScript : BasicEnemyAI
 {
 
-    public int jumpHeight = 20;
+    public int jumpHeight = 5;
 
     protected override void Attack()
     {
@@ -15,7 +15,7 @@ public class SlimeScript : BasicEnemyAI
         float xDir = Math.Sign(player.gameObject.transform.position.x - transform.position.x);
         hitboxActive = true;
 
-        body.velocity = new Vector3(body.velocity.x + xDir * 2, jumpHeight, body.velocity.z);
+        body.velocity = new Vector3((player.gameObject.transform.position.x - transform.position.x), jumpHeight, body.velocity.z);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -23,7 +23,7 @@ public class SlimeScript : BasicEnemyAI
         if (hitboxActive && collision.gameObject.name == "Player")
         {
             print("player hit");
-            collision.gameObject.GetComponent<PlayerMovement>().takeDamage(1);
+            collision.gameObject.GetComponent<Player>().takeDamage(1);
         }
         if (hitboxActive && collision.gameObject.tag == "Ground")
         {
