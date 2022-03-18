@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
             dir = playerInputActions.Player.Move.ReadValue<Vector2>().x;
             jump = playerInputActions.Player.Jump.IsPressed();
             swing = playerInputActions.Player.Attack.IsPressed();
+            interact = playerInputActions.Player.Interact.IsPressed();
         }
         
 

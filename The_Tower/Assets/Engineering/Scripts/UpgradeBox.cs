@@ -19,10 +19,11 @@ public class UpgradeBox : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Player" && other.gameObject.GetComponent<PlayerMovement>().interact == true && !UpgradeChooser.activeSelf)
+        if (other.gameObject.name == "Player" && other.gameObject.GetComponent<Player>().interact == true && !UpgradeChooser.activeSelf)
         {
             UpgradeChooser.SetActive(true);
             UpgradeChooser.GetComponent<UpgradeChooser>().Open();
+            UpgradeChooser.GetComponent<UpgradeChooser>().SetUpgradeBox(gameObject);
         }   
     }
 
