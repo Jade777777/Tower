@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class UpgradeChooser : MonoBehaviour
 {
-    GameObject upgrade1Button, upgrade2Button, upgrade3Button, player;
+    GameObject upgrade1Button, upgrade2Button, upgrade3Button, player, upgradeBox;
     Upgrade upgrade;
     public Text upgrade1Text, upgrade2Text, upgrade3Text;
 
     // Start is called before the first frame update
     void Start()
     {
-        upgrade1Button = transform.GetChild(1).gameObject;
-        upgrade2Button = transform.GetChild(2).gameObject;
-        upgrade3Button = transform.GetChild(3).gameObject;
+        upgrade1Button = transform.GetChild(0).gameObject;
+        upgrade2Button = transform.GetChild(1).gameObject;
+        upgrade3Button = transform.GetChild(2).gameObject;
         player = GameObject.Find("Player");
     }
 
@@ -28,23 +28,28 @@ public class UpgradeChooser : MonoBehaviour
     public void Close()
     {
         gameObject.SetActive(false);
+        Destroy(upgradeBox);
+    }
+
+    public void SetUpgradeBox(GameObject box) {
+        upgradeBox = box;
     }
 
     public void choseUpgrade1()
     {
-        player.GetComponent<PlayerMovement>().spd += upgrade.Upgrade1;
+        player.GetComponent<Player>().spd += upgrade.Upgrade1;
         Close();
     }
 
     public void choseUpgrade2()
     {
-        player.GetComponent<PlayerMovement>().maxspd += upgrade.Upgrade2;
+        player.GetComponent<Player>().maxspd += upgrade.Upgrade2;
         Close();
     }
 
     public void choseUpgrade3()
     {
-        player.GetComponent<PlayerMovement>().jumpPower += upgrade.Upgrade3;
+        player.GetComponent<Player>().jumpPower += upgrade.Upgrade3;
         Close();
     }
 }
