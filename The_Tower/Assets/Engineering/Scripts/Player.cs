@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     private TheTowerInput playerInputActions;
     private bool left, right, up = false, down, roll, onGround, leftGround, rolling = false, canMove = true, swing, jump;
     float facing = 0, dir = 0;
-    double xvel = 0, finalXvel = 0;
+    double xvel = 0;
     Vector3 preppedVelocity;
     Vector2 movementValue;
 
@@ -95,6 +95,7 @@ public class Player : MonoBehaviour
         }
 
         //calculate movement
+        /*
         if (!rolling)
         {
             if (onGround) xvel += dir * spd;
@@ -105,12 +106,12 @@ public class Player : MonoBehaviour
         if (animator.GetBool("swinging")) {
             xvel /= 2;
         }
+        */
+
         //set animator variables
         animator.SetBool("onground", onGround);
         animator.SetFloat("spd", Mathf.Abs((float)xvel));
         animator.SetInteger("rise", (int)body.velocity.y);
-        //prep xvel for fixed update
-        finalXvel = xvel;
     }
 
     //weapon collision
@@ -127,8 +128,18 @@ public class Player : MonoBehaviour
     //update velocity at a fixed rate
     private void FixedUpdate()
     {
+        if (!rolling)
+        {
+            if (onGround) xvel += dir * spd;
+            else xvel += dir * (0.8 * spd);
+            if (Math.Abs(xvel) > maxspd) xvel = maxspd * dir;
+        }
+
+        if (animator.GetBool("swinging")) {
+            xvel /= 2;
+        }
         //account for time difference
-        body.velocity = new Vector3((float)(finalXvel * Time.deltaTime * SPDMULTI), body.velocity.y, body.velocity.z);
+        body.velocity = new Vector3((float)(xvel * Time.deltaTime * SPDMULTI), body.velocity.y, body.velocity.z);
     }
     
     //function for taking damage

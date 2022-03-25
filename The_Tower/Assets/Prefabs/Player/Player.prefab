@@ -15,9 +15,11 @@ GameObject:
   - component: {fileID: 4439791665099774637}
   - component: {fileID: 4439791665099774634}
   - component: {fileID: 4439791665099774635}
-  m_Layer: 0
+  - component: {fileID: 1057663955}
+  - component: {fileID: 1057663956}
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,9 +70,11 @@ MonoBehaviour:
   interact: 0
   hitstun: 0
   hittable: 1
+  attacking: 0
   swingSecs: 1
   swingCDSecs: 2
   jumpPower: 5
+  distanceToGround: 0.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
@@ -78,6 +82,7 @@ MonoBehaviour:
   maxspd: 15
   HP: 3
   maxHP: 3
+  atk: 1
 --- !u!114 &2097748331848021477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,6 +152,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 800b4586-8027-4960-865e-0ce89b18092c
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f89f0136-7b25-4e33-a7ff-07afee79786a
+    m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c8f9fdc9-e91a-4d8b-8e01-9e725eff1f17
+    m_ActionName: Player/Attack[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 552102ab-d904-416d-a439-ba9016c9a803
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -159,7 +176,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4439791665420281930}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 16922c93f653fc245841f34280f1fef7, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.13
@@ -185,7 +202,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: b9c0b3dc099dbc6409467a3d28349b48, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -236,6 +253,31 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1057663955
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4439791665420281930}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.35993373, y: 0.6420538, z: 0.1501489}
+  m_Center: {x: 0.28597122, y: 0.11602691, z: 0.02492556}
+--- !u!114 &1057663956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4439791665420281930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbb3d770e56312c4eb774c43b5a2c751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4439791665496804971
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +289,7 @@ GameObject:
   - component: {fileID: 4439791665496804982}
   - component: {fileID: 4439791665496804969}
   - component: {fileID: 4439791665496804968}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
