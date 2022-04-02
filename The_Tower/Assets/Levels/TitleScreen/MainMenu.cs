@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
     public void NewGame()
     {
         print("Starting a new game, deleting all save data");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);//this loads the next level in the build index, place anywhere you need to load another level.
     }
 
 
@@ -23,5 +23,7 @@ public class MainMenu : MonoBehaviour
     {
         print("Exiting Game");
         Application.Quit();
+        UnityEditor.EditorApplication.isPlaying = false;
+
     }
 }
