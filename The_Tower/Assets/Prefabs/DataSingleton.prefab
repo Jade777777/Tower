@@ -44,3 +44,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 1
+  jumpPower: 5
+  spd: 1
+  maxspd: 10
+  HP: 3
+  maxHP: 3
+  atk: 1
+  dataPrefab: {fileID: 476987588516455774}

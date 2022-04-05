@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 using UnityEngine.Animations;
+using UnityEngine.SceneManagement;
+
 public class Player : MonoBehaviour
 {
     //private variables
@@ -158,7 +160,10 @@ public class Player : MonoBehaviour
             hitstun = true;
             Invoke(nameof(endHitstun), 2);
 
-            if (HP <= 0) { Application.Quit(); }
+            if (HP <= 0) 
+            {
+                SceneManager.LoadScene(2);
+            }
         }
         else print("player cannot take damgage");       
     }

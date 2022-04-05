@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class QuitToMainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
 public void QuitToTitle()
     {
         SceneManager.LoadScene(0);
