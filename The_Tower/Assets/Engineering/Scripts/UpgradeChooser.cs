@@ -15,7 +15,7 @@ public class UpgradeChooser : MonoBehaviour
         upgrade1Button = transform.GetChild(0).gameObject;
         upgrade2Button = transform.GetChild(1).gameObject;
         upgrade3Button = transform.GetChild(2).gameObject;
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     public void Open()

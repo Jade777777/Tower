@@ -19,8 +19,9 @@ public class UpgradeBox : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.name == "Player" && other.gameObject.GetComponent<Player>().interact == true && !UpgradeChooser.activeSelf)
+        if (other.gameObject.tag == "Player" && other.gameObject.GetComponent<Player>().interact == true && !UpgradeChooser.activeSelf)
         {
+            print("box active");
             UpgradeChooser.SetActive(true);
             UpgradeChooser.GetComponent<UpgradeChooser>().Open();
             UpgradeChooser.GetComponent<UpgradeChooser>().SetUpgradeBox(gameObject);
@@ -29,7 +30,7 @@ public class UpgradeBox : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.name == "Player")
+        if (other.gameObject.tag == "Player")
         {
             interactPrompt.SetActive(false);
         }
@@ -38,6 +39,7 @@ public class UpgradeBox : MonoBehaviour
     void Start()
     {
         interactPrompt = transform.GetChild(0).gameObject; 
+        UpgradeChooser = GameObject.Find("UI").gameObject.transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
