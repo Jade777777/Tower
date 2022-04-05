@@ -8,8 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Levels/TitleScreen/Title.unity
     guid: bad8ae901409a2e4eb5e93397c989777
-  - enabled: 1
+  - enabled: 0
     path: Assets/Engineering/TestScenes/CodingWorkshop.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Levels/Level 1/Scene Name.unity
+    guid: 8107da3ce8dbf63468a5a60df7251e5b
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: ff2cb8cbd9c17704484a993538ad70cf, type: 2}

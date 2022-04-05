@@ -78,8 +78,8 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  spd: 0.1
-  maxspd: 15
+  spd: 0.2
+  maxspd: 10
   HP: 3
   maxHP: 3
   atk: 1
@@ -202,7 +202,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b9c0b3dc099dbc6409467a3d28349b48, type: 2}
+  - {fileID: 2100000, guid: dede963ca331517409bc5aa607e454b9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

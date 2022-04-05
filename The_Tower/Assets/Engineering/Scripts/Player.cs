@@ -7,20 +7,18 @@ using UnityEngine.Animations;
 public class Player : MonoBehaviour
 {
     //private variables
-    private GameObject me, weapon;
+    private GameObject me;
     private Rigidbody body;
     PlayerInput playerInput;
     Animator animator;
     private TheTowerInput playerInputActions;
-    private bool left, right, up = false, down, roll, onGround, leftGround, rolling = false, canMove = true, swing, jump;
+    private bool  onGround, leftGround, rolling = false, canMove = true, swing, jump;
     float facing = 0, dir = 0;
     double xvel = 0;
-    Vector3 preppedVelocity;
-    Vector2 movementValue;
 
     //public variables
     public bool interact, hitstun = false, hittable = true, attacking = false;
-    public float swingSecs = 1, swingCDSecs = 2, jumpPower = 5, distanceToGround = .5f;
+    public float jumpPower = 5, distanceToGround = .5f;
     public LayerMask whatIsGround;
     public double spd = 1, maxspd = 10;
     public int HP = 3, maxHP = 3, atk = 1;
@@ -38,6 +36,15 @@ public class Player : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
         playerInputActions = new TheTowerInput();
         playerInputActions.Player.Enable();
+        if (PersistantGameManager.Instance != null) {
+            //update to player's value
+            jumpPower = PersistantGameManager.Instance.jumpPower;
+            spd = PersistantGameManager.Instance.spd;
+            maxspd = PersistantGameManager.Instance.maxspd;
+            HP = PersistantGameManager.Instance.HP;
+            maxHP = PersistantGameManager.Instance.maxHP;
+            atk = PersistantGameManager.Instance.atk;
+        }
     }
 
     void Update()
@@ -168,5 +175,14 @@ public class Player : MonoBehaviour
             leftGround = false;
             onGround = false;
         }
+    }
+
+    public void updateSingleton() {
+        PersistantGameManager.Instance.jumpPower = jumpPower;
+        PersistantGameManager.Instance.spd = spd;
+        PersistantGameManager.Instance.maxspd = maxspd;
+        PersistantGameManager.Instance.HP = HP;
+        PersistantGameManager.Instance.maxHP = maxHP;
+        PersistantGameManager.Instance.atk = atk;
     }
 }
