@@ -71,8 +71,6 @@ MonoBehaviour:
   hitstun: 0
   hittable: 1
   attacking: 0
-  swingSecs: 1
-  swingCDSecs: 2
   jumpPower: 5
   distanceToGround: 0.5
   whatIsGround:
@@ -164,6 +162,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 552102ab-d904-416d-a439-ba9016c9a803
     m_ActionName: Player/Interact[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ce25ba5e-b5e5-4f09-98fd-6b28d4f604b1
+    m_ActionName: Player/Menu[/Keyboard/m]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
