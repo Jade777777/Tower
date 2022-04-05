@@ -47,26 +47,27 @@ public class PersistantGameManager : MonoBehaviour
                 print(IsSaveFile());
             }
             BinaryFormatter bf = new BinaryFormatter();
-
             FileStream file = File.Create(Application.persistentDataPath + "/game_save/data.txt");
             var json = JsonUtility.ToJson(this);
+
             bf.Serialize(file, json);
             file.Close();
-            print("gameSaved");
         } 
     }
     public void LoadGame()
     {
-        BinaryFormatter bf = new BinaryFormatter();
+        
         if(File.Exists(Application.persistentDataPath + "/game_save/data.txt"))
         {
+            BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/game_save/data.txt",FileMode.Open);
+
             JsonUtility.FromJsonOverwrite((string)bf.Deserialize(file), this);
             file.Close();
         }
     }
 
-//subscribes to delegate  and automaticaly saves game 
+//subscribes to delegate, automaticaly saves game 
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnLevelFinishedLoading;
