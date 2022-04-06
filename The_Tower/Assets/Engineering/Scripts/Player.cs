@@ -13,9 +13,10 @@ public class Player : MonoBehaviour
     private Rigidbody body;
     PlayerInput playerInput;
     Animator animator;
+    private BoxCollider weaponHitbox;
     private TheTowerInput playerInputActions;
     private bool  onGround, leftGround, rolling = false, canMove = true, swing, jump;
-    float facing = 0, dir = 0;
+    float facing = 1, dir = 0;
     double xvel = 0;
 
     //public variables
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         playerInput = GetComponent<PlayerInput>();
         playerInputActions = new TheTowerInput();
+        weaponHitbox = GetComponent<BoxCollider>();
         playerInputActions.Player.Enable();
         if (PersistantGameManager.Instance != null) {
             //update to player's value
@@ -65,7 +67,10 @@ public class Player : MonoBehaviour
         if (dir != 0 && facing != dir)
         {
             facing = dir;
-            if (facing < 0) GetComponent<SpriteRenderer>().flipX = true;
+            weaponHitbox.center = new Vector3(weaponHitbox.center.x * -1, weaponHitbox.center.y, weaponHitbox.center.z);
+            if (facing < 0) {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
             else GetComponent<SpriteRenderer>().flipX = false;
         }
         
@@ -103,19 +108,6 @@ public class Player : MonoBehaviour
             animator.SetBool("swinging", false);
         }
 
-        //calculate movement
-        /*
-        if (!rolling)
-        {
-            if (onGround) xvel += dir * spd;
-            else xvel += dir * (0.8 * spd);
-            if (Math.Abs(xvel) > maxspd) xvel = maxspd * dir;
-        }
-
-        if (animator.GetBool("swinging")) {
-            xvel /= 2;
-        }
-        */
 
         //set animator variables
         animator.SetBool("onground", onGround);
@@ -164,8 +156,7 @@ public class Player : MonoBehaviour
             {
                 SceneManager.LoadScene(2);
             }
-        }
-        else print("player cannot take damgage");       
+        }    
     }
 
     //end the hitstun
