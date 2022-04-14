@@ -15,14 +15,15 @@ public class Player : MonoBehaviour
     Animator animator;
     private BoxCollider weaponHitbox;
     private TheTowerInput playerInputActions;
-    private bool  onGround, leftGround, rolling = false, canMove = true, swing, jump;
-    float facing = 1, dir = 0;
+    private bool  onGround, leftGround, rolling = false, canMove = true, swing, jump, canJump = true;
+    private float facing = 1, dir = 0, jumpCD = .5f;
     double xvel = 0;
 
     //public variables
-    public bool interact, hitstun = false, hittable = true, attacking = false;
+    public bool interact, hitstun = false, hittable = true, attacking = false, playSwingSFX = false;
     public float jumpPower = 5, distanceToGround = .5f;
     public LayerMask whatIsGround;
+    public GameObject sounds;
     public double spd = 1, maxspd = 10;
     public int HP = 3, maxHP = 3, atk = 1;
 
@@ -57,9 +58,9 @@ public class Player : MonoBehaviour
         if (canMove)
         {
             dir = playerInputActions.Player.Move.ReadValue<Vector2>().x;
-            jump = playerInputActions.Player.Jump.IsPressed();
-            swing = playerInputActions.Player.Attack.IsPressed();
-            interact = playerInputActions.Player.Interact.IsPressed();
+            jump = playerInputActions.Player.Jump.WasPressedThisFrame();
+            swing = playerInputActions.Player.Attack.WasPressedThisFrame();
+            interact = playerInputActions.Player.Interact.WasPressedThisFrame();
         }
         
 
@@ -79,40 +80,44 @@ public class Player : MonoBehaviour
         if (dir == 0 && !rolling) xvel /= 2;
         else if (rolling) xvel /= 1.02;
 
-        //determine if on ground or not
-        if (Physics.Raycast(transform.position, Vector3.down, distanceToGround, whatIsGround))
-        {
-            leftGround = false;
-            onGround = true;
-        }
-
-        //coyote time
+        //coyote time 
+        /*
         if (leftGround & !onGround)
         {
             Invoke(nameof(resetCoyo), 1);
         }
-
+        */
 
         //jump
-        if (onGround && jump && !attacking)
+        if (onGround && jump && !attacking && canJump)
         {
+            canJump = false;
             onGround = false;
+            getSound(2).Play();
             body.velocity = new Vector3(body.velocity.x, (float)jumpPower, body.velocity.z);
+            Invoke(nameof(endJumpCD), jumpCD);
         }
         
         //if swing, set the animator to swinging
         if (swing && onGround) {
             animator.SetBool("swinging", true);
+
         }
         else if (!swing) {
             animator.SetBool("swinging", false);
         }
 
+        if (playSwingSFX == true) {
+            getSound(1).Play();
+            playSwingSFX = false;
+            print("swingsfx");
+        }
 
         //set animator variables
         animator.SetBool("onground", onGround);
         animator.SetFloat("spd", Mathf.Abs((float)xvel));
         animator.SetInteger("rise", (int)body.velocity.y);
+        print(onGround);
     }
 
     //weapon collision
@@ -141,6 +146,15 @@ public class Player : MonoBehaviour
         }
         //account for time difference
         body.velocity = new Vector3((float)(xvel * Time.deltaTime * SPDMULTI), body.velocity.y, body.velocity.z);
+
+        //determine if on ground or not
+        if (Physics.Raycast(transform.position, Vector3.down, distanceToGround, whatIsGround))
+        {
+            onGround = true;
+        }
+        else {
+            onGround = false;
+        }
     }
     
     //function for taking damage
@@ -148,6 +162,7 @@ public class Player : MonoBehaviour
     {
         if (hittable && !hitstun)
         {
+            getSound(0).Play();
             HP -= DMGAmount;
             hitstun = true;
             Invoke(nameof(endHitstun), 2);
@@ -165,12 +180,9 @@ public class Player : MonoBehaviour
         hitstun = false;
     }
 
-    //reset the coyote time variables
-    private void resetCoyo() {
-        if (!onGround) {
-            leftGround = false;
-            onGround = false;
-        }
+    //end jump cooldown
+    private void endJumpCD(){
+        canJump = true;
     }
 
     public void updateSingleton() {
@@ -180,5 +192,10 @@ public class Player : MonoBehaviour
         PersistantGameManager.Instance.HP = HP;
         PersistantGameManager.Instance.maxHP = maxHP;
         PersistantGameManager.Instance.atk = atk;
+    }
+
+    public AudioSource getSound(int repositoryIndex) {
+        GameObject soundFolder = sounds.transform.GetChild(repositoryIndex).gameObject;
+        return soundFolder.transform.GetChild(UnityEngine.Random.Range(0,soundFolder.transform.childCount)).gameObject.GetComponent<AudioSource>();
     }
 }

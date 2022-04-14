@@ -112,10 +112,10 @@ TextureImporter:
       name: slime_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 66
-        width: 28
-        height: 28
+        x: 1
+        y: 65
+        width: 30
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,10 +133,10 @@ TextureImporter:
       name: slime_1
       rect:
         serializedVersion: 2
-        x: 36
-        y: 66
-        width: 24
-        height: 27
+        x: 35
+        y: 65
+        width: 26
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,10 +154,10 @@ TextureImporter:
       name: slime_2
       rect:
         serializedVersion: 2
-        x: 7
-        y: 34
-        width: 21
-        height: 26
+        x: 6
+        y: 33
+        width: 23
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,10 +175,10 @@ TextureImporter:
       name: slime_3
       rect:
         serializedVersion: 2
-        x: 36
-        y: 34
-        width: 24
-        height: 27
+        x: 35
+        y: 33
+        width: 26
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,10 +196,10 @@ TextureImporter:
       name: slime_4
       rect:
         serializedVersion: 2
-        x: 2
-        y: 2
-        width: 28
-        height: 28
+        x: 1
+        y: 1
+        width: 30
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,10 +217,10 @@ TextureImporter:
       name: slime_5
       rect:
         serializedVersion: 2
-        x: 36
-        y: 2
-        width: 24
-        height: 28
+        x: 35
+        y: 1
+        width: 26
+        height: 30
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

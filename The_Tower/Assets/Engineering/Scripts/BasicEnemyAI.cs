@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class BasicEnemyAI : MonoBehaviour
 {
 
-    public Transform player;
+    protected Transform player;
+    public GameObject sounds;
     public Rigidbody body;
     public LayerMask whatIsGround, whatIsPlayer;
     public float hp;
+    protected Animator animator;
+    protected int dir = 0, facing = -1;
+    protected SpriteRenderer sprite;
 
     //patroling
     public Vector3 walkPoint;
@@ -26,12 +31,14 @@ public class BasicEnemyAI : MonoBehaviour
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         body = gameObject.GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         //check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -49,7 +56,7 @@ public class BasicEnemyAI : MonoBehaviour
     }
 
 
-    private void Patroling()
+    protected void Patroling()
     {
         if (!walkPointset) SearchWalkPoint();
 
@@ -76,14 +83,27 @@ public class BasicEnemyAI : MonoBehaviour
         }
     }
 
-    private void ChasePlayer()
+    protected void ChasePlayer()
     {
         moveTo(player.position);
     }
 
-    private void AttackPlayer()
+    protected void AttackPlayer()
     {
         moveTo(transform.position);
+
+        float playerDir = Math.Sign(player.position.x - transform.position.x);
+        int SpriteDir = Math.Sign(playerDir);
+        if (SpriteDir != 0 || SpriteDir != facing) {
+            if (SpriteDir == 1) {
+                facing = 1;
+                sprite.flipX = true;
+            }
+            else if (SpriteDir == -1) {
+                sprite.flipX = false;
+                facing = -1;
+            }
+        }
 
         if (!alreadyAttacked)
         {
@@ -100,15 +120,27 @@ public class BasicEnemyAI : MonoBehaviour
         print("enemy attack");
     }
 
-    private void ResetAttack()
+    protected void ResetAttack()
     {
         alreadyAttacked = false;
     }
 
-    private void moveTo(Vector3 loc)
+    protected void moveTo(Vector3 loc)
     {
         float xDir = Math.Sign(loc.x - transform.position.x);
         float zDir = Math.Sign(loc.z - transform.position.z);
+
+        int SpriteDir = Math.Sign(xDir);
+        if (SpriteDir != 0 || SpriteDir != facing) {
+            if (SpriteDir == 1) {
+                facing = 1;
+                sprite.flipX = true;
+            }
+            else if (SpriteDir == -1) {
+                sprite.flipX = false;
+                facing = -1;
+            }
+        }
 
         Vector3 destination = new Vector3(spd * xDir, body.velocity.y, spd * zDir);
 
@@ -121,7 +153,16 @@ public class BasicEnemyAI : MonoBehaviour
 
         if (hp < 0)
         {
+            getSound(1).Play();
             Destroy(gameObject);
         }
+        else {
+            getSound(0).Play();
+        }
+    }
+
+    protected AudioSource getSound(int repositoryIndex) {
+        GameObject soundFolder = sounds.transform.GetChild(repositoryIndex).gameObject;
+        return soundFolder.transform.GetChild(UnityEngine.Random.Range(0,soundFolder.transform.childCount)).gameObject.GetComponent<AudioSource>();
     }
 }
