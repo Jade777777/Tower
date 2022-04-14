@@ -10,6 +10,8 @@ public class PersistantGameManager : MonoBehaviour
     public static PersistantGameManager Instance { get; private set; }
 
     public int currentLevel;
+    public GameObject songs;
+    public int songPlaying = -1;
 
     //player variables
     public float jumpPower = 5;
@@ -54,6 +56,26 @@ public class PersistantGameManager : MonoBehaviour
         atk=dAtk;
     }
 
+    //-- music player --
+    public void playSong(int songIndex) {
+        if (songIndex == songPlaying) {
+            return;
+        }
+        else if (songIndex >= 0 && songPlaying == -1) {
+            songs.transform.GetChild(songIndex).GetComponent<AudioSource>().Play();
+            songPlaying = songIndex;
+        }
+        else if (songIndex >= 0 && songPlaying >= 0) {
+            songs.transform.GetChild(songPlaying).GetComponent<AudioSource>().Stop();
+            songs.transform.GetChild(songIndex).GetComponent<AudioSource>().Play();
+            songPlaying = songIndex;
+        }
+        else if (songIndex <= 0) {
+            songs.transform.GetChild(songPlaying).GetComponent<AudioSource>().Stop();
+            songPlaying = -1;
+        }
+        
+    }
 
     //--------------------------------------Save System-------------------------------------
 

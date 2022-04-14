@@ -26,6 +26,8 @@ public class LevelGeneration : MonoBehaviour
         }
 
         Instantiate(startingRoom, transform.position, Quaternion.identity);
+
+        PersistantGameManager.Instance.playSong(1);
     }
 
     private void Update() {

@@ -10,7 +10,7 @@ public class BatScript : BasicEnemyAI
     protected override void Attack()
     {
         Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-        rb.AddForce(transform.right * pForceH * -1, ForceMode.Impulse);
+        rb.AddForce(transform.right * pForceH * facing, ForceMode.Impulse);
         rb.AddForce(transform.up * pForceV, ForceMode.Impulse);
     }
 }

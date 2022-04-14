@@ -10,8 +10,8 @@ public class LevelChange : MonoBehaviour
     public GameObject loadingScreen;
     public Slider slider;
 
-    void Awake(){
-        loadingScreen = GameObject.Find("UI").transform.GetChild(2).gameObject;
+    void Start(){
+        loadingScreen = GameObject.Find("UI").transform.GetChild(3).gameObject;
         slider = loadingScreen.transform.GetChild(0).GetComponent<Slider>();
     }
 

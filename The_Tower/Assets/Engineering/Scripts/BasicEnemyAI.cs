@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+
 public class BasicEnemyAI : MonoBehaviour
 {
 
     protected Transform player;
+    public GameObject sounds;
     public Rigidbody body;
     public LayerMask whatIsGround, whatIsPlayer;
     public float hp;
@@ -90,6 +92,19 @@ public class BasicEnemyAI : MonoBehaviour
     {
         moveTo(transform.position);
 
+        float playerDir = Math.Sign(player.position.x - transform.position.x);
+        int SpriteDir = Math.Sign(playerDir);
+        if (SpriteDir != 0 || SpriteDir != facing) {
+            if (SpriteDir == 1) {
+                facing = 1;
+                sprite.flipX = true;
+            }
+            else if (SpriteDir == -1) {
+                sprite.flipX = false;
+                facing = -1;
+            }
+        }
+
         if (!alreadyAttacked)
         {
             //attack code here
@@ -138,7 +153,16 @@ public class BasicEnemyAI : MonoBehaviour
 
         if (hp < 0)
         {
+            getSound(1).Play();
             Destroy(gameObject);
         }
+        else {
+            getSound(0).Play();
+        }
+    }
+
+    protected AudioSource getSound(int repositoryIndex) {
+        GameObject soundFolder = sounds.transform.GetChild(repositoryIndex).gameObject;
+        return soundFolder.transform.GetChild(UnityEngine.Random.Range(0,soundFolder.transform.childCount)).gameObject.GetComponent<AudioSource>();
     }
 }

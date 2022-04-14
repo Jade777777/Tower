@@ -9,6 +9,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         pData = FindObjectOfType<PersistantGameManager>();
+        PersistantGameManager.Instance.playSong(0);
     }
     public void NewGame()
     {
