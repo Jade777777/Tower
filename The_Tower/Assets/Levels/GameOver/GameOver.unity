@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 91394450}
   - component: {fileID: 91394452}
   - component: {fileID: 91394451}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +289,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 349354869}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: You Died
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 349354868}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 91394450}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 397762590}
   - component: {fileID: 397762592}
   - component: {fileID: 397762591}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -367,7 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.5471698, g: 0.038198628, b: 0.038198628, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 701322383}
   - component: {fileID: 701322385}
   - component: {fileID: 701322384}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Image (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 825457500}
   - component: {fileID: 825457502}
   - component: {fileID: 825457501}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Image (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +953,7 @@ GameObject:
   - component: {fileID: 901515105}
   - component: {fileID: 901515107}
   - component: {fileID: 901515106}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1106,7 +1106,7 @@ GameObject:
   - component: {fileID: 1077487200}
   - component: {fileID: 1077487202}
   - component: {fileID: 1077487201}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Image (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
