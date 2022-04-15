@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     //public variables
     public bool interact, hitstun = false, hittable = true, attacking = false, playSwingSFX = false;
-    public float jumpPower = 5, distanceToGround = .6f;
+    public float jumpPower = 5, distanceToGround = .5f;
     public LayerMask whatIsGround;
     public GameObject sounds;
     public double spd = 1, maxspd = 10;
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         {
             dir = playerInputActions.Player.Move.ReadValue<Vector2>().x;
             jump = playerInputActions.Player.Jump.WasPressedThisFrame();
-            swing = playerInputActions.Player.Attack.WasPerformedThisFrame();//swing = playerInputActions.Player.Attack.WasPressedThisFrame();
+            swing = playerInputActions.Player.Attack.WasPressedThisFrame();
 
             interact = playerInputActions.Player.Interact.WasPressedThisFrame();
         }
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
             animator.SetBool("swinging", true);
             attindelay = true;
         }
-        else if(!swing && attindelay == true)// hacky fix for working in browser. Adjusts for inconsistent animator framerate.
+        else if( attindelay == true)// hacky fix for working in browser. Adjusts for inconsistent animator framerate.
         {
             attindelay = false;
         }

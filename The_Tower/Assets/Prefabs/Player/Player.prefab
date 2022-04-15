@@ -777,7 +777,7 @@ MonoBehaviour:
   attacking: 0
   playSwingSFX: 0
   jumpPower: 5
-  distanceToGround: 0.7
+  distanceToGround: 0.5
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
