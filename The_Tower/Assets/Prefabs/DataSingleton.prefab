@@ -50,8 +50,8 @@ MonoBehaviour:
   jumpPower: 5
   spd: 1
   maxspd: 10
-  HP: 3
-  maxHP: 3
+  HP: 5
+  maxHP: 5
   atk: 1
   dJumpPower: 0
 --- !u!1 &5011604435249376538
