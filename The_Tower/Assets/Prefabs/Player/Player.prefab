@@ -784,8 +784,8 @@ MonoBehaviour:
   sounds: {fileID: 8164729634187158723}
   spd: 0.2
   maxspd: 10
-  HP: 3
-  maxHP: 3
+  HP: 5
+  maxHP: 5
   atk: 1
 --- !u!114 &2097748331848021477
 MonoBehaviour:
