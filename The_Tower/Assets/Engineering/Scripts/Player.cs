@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
             dir = playerInputActions.Player.Move.ReadValue<Vector2>().x;
             jump = playerInputActions.Player.Jump.WasPressedThisFrame();
             swing = playerInputActions.Player.Attack.WasPressedThisFrame();
+
             interact = playerInputActions.Player.Interact.WasPressedThisFrame();
         }
         
@@ -101,7 +102,11 @@ public class Player : MonoBehaviour
         //if swing, set the animator to swinging
         if (swing && onGround) {
             animator.SetBool("swinging", true);
-
+            attindelay = true;
+        }
+        else if( attindelay == true)// hacky fix for working in browser. Adjusts for inconsistent animator framerate.
+        {
+            attindelay = false;
         }
         else if (!swing) {
             animator.SetBool("swinging", false);
@@ -119,7 +124,8 @@ public class Player : MonoBehaviour
         animator.SetInteger("rise", (int)body.velocity.y);
         print(onGround);
     }
-
+    //hacky input fix
+    bool attindelay = false;
     //weapon collision
     private void OnTriggerEnter(Collider collision)
     {
