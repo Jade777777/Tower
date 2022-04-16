@@ -18,4 +18,4 @@ EditorBuildSettings:
     path: Assets/Engineering/TestScenes/CodingWorkshop.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
-    com.unity.input.settings: {fileID: 11400000, guid: ff2cb8cbd9c17704484a993538ad70cf, type: 2}
+    com.unity.input.settings: {fileID: 11400000, guid: cc66b8b195c215f4e8a25b502ff2bf02, type: 2}

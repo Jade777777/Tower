@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
 
     //public variables
     public bool interact, hitstun = false, hittable = true, attacking = false, playSwingSFX = false;
-    public float jumpPower = 5, distanceToGround = .5f;
+    public float jumpPower = 5, distanceToGround = .51f;
     public LayerMask whatIsGround;
     public GameObject sounds;
     public double spd = 1, maxspd = 10;
@@ -90,17 +90,25 @@ public class Player : MonoBehaviour
         */
 
         //jump
-        if (onGround && jump && !attacking && canJump)
+        if (jump)
         {
-            canJump = false;
-            onGround = false;
-            getSound(2).Play();
-            body.velocity = new Vector3(body.velocity.x, (float)jumpPower, body.velocity.z);
-            Invoke(nameof(endJumpCD), jumpCD);
+            if (onGround && !attacking && canJump)
+            {
+                print("Jumping");
+                canJump = false;
+                onGround = false;
+                getSound(2).Play();
+                body.velocity = new Vector3(body.velocity.x, (float)jumpPower, body.velocity.z);
+                Invoke(nameof(endJumpCD), jumpCD);
+            }
+            else
+            {
+                print(onGround+" "+!attacking+" "+ canJump);
+            }
         }
         
         //if swing, set the animator to swinging
-        if (swing && onGround) {
+        if (swing ) {
             animator.SetBool("swinging", true);
             attindelay = true;
         }
@@ -115,14 +123,14 @@ public class Player : MonoBehaviour
         if (playSwingSFX == true) {
             getSound(1).Play();
             playSwingSFX = false;
-            print("swingsfx");
+          
         }
 
         //set animator variables
         animator.SetBool("onground", onGround);
         animator.SetFloat("spd", Mathf.Abs((float)xvel));
         animator.SetInteger("rise", (int)body.velocity.y);
-        print(onGround);
+        
     }
     //hacky input fix
     bool attindelay = false;
