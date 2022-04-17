@@ -7,6 +7,6 @@ public class QuitToMainMenu : MonoBehaviour
 {
 public void QuitToTitle()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(3);
     }
 }
