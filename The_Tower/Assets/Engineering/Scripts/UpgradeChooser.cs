@@ -21,9 +21,9 @@ public class UpgradeChooser : MonoBehaviour
     public void Open()
     {
         upgrade = new Upgrade();
-        upgrade1Text.text = "Upgrade 1: Acceleration increases by " + upgrade.Upgrade1;
-        upgrade2Text.text = "Upgrade 2: Speed increases by " + upgrade.Upgrade2;
-        upgrade3Text.text = "Upgrade 3: Jump increases by " + upgrade.Upgrade3;
+        upgrade1Text.text = DisplayText(upgrade.Upgrade1Type, upgrade.Upgrade1);
+        upgrade2Text.text = DisplayText(upgrade.Upgrade2Type, upgrade.Upgrade2);
+        upgrade3Text.text = DisplayText(upgrade.Upgrade3Type, upgrade.Upgrade3);
     }
     public void Close()
     {
@@ -37,19 +37,59 @@ public class UpgradeChooser : MonoBehaviour
 
     public void choseUpgrade1()
     {
-        player.GetComponent<Player>().spd += upgrade.Upgrade1;
+        ApplyUpgrade(upgrade.Upgrade1Type, upgrade.Upgrade1);
         Close();
     }
 
     public void choseUpgrade2()
     {
-        player.GetComponent<Player>().maxspd += upgrade.Upgrade2;
+        ApplyUpgrade(upgrade.Upgrade2Type, upgrade.Upgrade2);
         Close();
     }
 
     public void choseUpgrade3()
     {
-        player.GetComponent<Player>().jumpPower += upgrade.Upgrade3;
+        ApplyUpgrade(upgrade.Upgrade3Type, upgrade.Upgrade3);
         Close();
+    }
+
+    private string DisplayText(int type, float value) {
+        switch(type) {
+            case 0:
+            return "Restore HP";
+            case 1:
+            return "Restore HP and increase max HP by 1.";
+            case 2:
+            return "Upgrade 3: Jump increases by " + value;
+            case 3:
+            return "Upgrade 2: Speed increases by " + value;
+            case 4:
+            return "Upgrade 1: Acceleration increases by " + value;
+            default:
+            return null;
+        }
+    }
+
+    private void ApplyUpgrade(int type, float value){
+        switch(type) {
+            case 0:
+            player.GetComponent<Player>().HP = player.GetComponent<Player>().maxHP;
+            break;
+            case 1:
+            player.GetComponent<Player>().maxHP += 1;
+            player.GetComponent<Player>().HP = player.GetComponent<Player>().maxHP;
+            break;
+            case 2:
+            player.GetComponent<Player>().jumpPower += value;
+            break;
+            case 3:
+            player.GetComponent<Player>().maxspd += value;
+            break;
+            case 4:
+            player.GetComponent<Player>().spd += value;
+            break;
+            default:
+            return;
+        }
     }
 }

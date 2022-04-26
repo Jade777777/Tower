@@ -9,7 +9,7 @@ public class PersistantGameManager : MonoBehaviour
 {
     public static PersistantGameManager Instance { get; private set; }
 
-    public int currentLevel;
+    public int currentLevel, highestLevel;
     public GameObject songs;
     public int songPlaying = -1;
 
@@ -54,6 +54,7 @@ public class PersistantGameManager : MonoBehaviour
         HP=dHP;
         maxHP= dMaxHP;
         atk=dAtk;
+        currentLevel = 1;
     }
 
     //-- music player --
@@ -122,7 +123,6 @@ public class PersistantGameManager : MonoBehaviour
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/game_save/data.txt");
         var json = JsonUtility.ToJson(this);
-
         bf.Serialize(file, json);
         file.Close();
     }

@@ -9,21 +9,20 @@ public class LevelGeneration : MonoBehaviour
     public float moveAmount, startTimeBtwRoom;
 
     private float timeBtwRoom;
-    private int direction, currentFloor, floorLength, currentLength, lastHeight;
+    private int direction = 1, currentFloor, floorLength, currentLength, lastHeight;
     //private bool stopGen = false;
 
     void Start()
     {
         floorLength = Random.Range(5,10);
         currentLength = 1;
-
         currentFloor = PersistantGameManager.Instance.currentLevel;
-        if (currentFloor % 2 == 1) {
+        /*if (currentFloor % 2 == 1) {
             direction = 1;
         }
         else {
             direction = -1;
-        }
+        }*/
 
         Instantiate(startingRoom, transform.position, Quaternion.identity);
 

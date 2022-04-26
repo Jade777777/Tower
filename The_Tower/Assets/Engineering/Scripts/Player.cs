@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
             jump = playerInputActions.Player.Jump.WasPressedThisFrame();
             swing = playerInputActions.Player.Attack.WasPressedThisFrame();
 
-            interact = playerInputActions.Player.Interact.WasPressedThisFrame();
+            interact = playerInputActions.Player.Interact.IsPressed();
         }
         
 
