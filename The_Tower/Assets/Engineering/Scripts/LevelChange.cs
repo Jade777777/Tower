@@ -21,7 +21,8 @@ public class LevelChange : MonoBehaviour
         {
             //update singleton
             collision.gameObject.GetComponent<Player>().updateSingleton();
-
+            PersistantGameManager.Instance.currentLevel += 1;
+            if (PersistantGameManager.Instance.currentLevel > PersistantGameManager.Instance.highestLevel) PersistantGameManager.Instance.highestLevel = PersistantGameManager.Instance.currentLevel;
             loadLevel(targetSceneID);
         }
     }

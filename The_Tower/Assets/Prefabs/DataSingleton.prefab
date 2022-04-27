@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30bbfbe4bd04df43a653b5c1589206f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 1
+  currentLevel: 0
+  highestLevel: 0
   songs: {fileID: 6003001564031767490}
   songPlaying: -1
   jumpPower: 5
