@@ -32,7 +32,7 @@ public class Upgrade
         case 1:
         return 0f;
         case 2:
-        return (float)Math.Round(UnityEngine.Random.Range((float)1, 2), 2);
+        return (float)Math.Round(UnityEngine.Random.Range((float).1, .5f), 2);
         case 3:
         return (float)Math.Round(UnityEngine.Random.Range((float)1, 2), 2);
         case 4:

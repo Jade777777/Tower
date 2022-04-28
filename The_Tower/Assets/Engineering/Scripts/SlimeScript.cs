@@ -20,7 +20,7 @@ public class SlimeScript : BasicEnemyAI
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (hitboxActive && collision.gameObject.name == "Player")
+        if (hitboxActive && collision.gameObject.tag == "Player")
         {
             print("player hit");
             collision.gameObject.GetComponent<Player>().takeDamage(1);
@@ -30,6 +30,5 @@ public class SlimeScript : BasicEnemyAI
             hitboxActive = false;
         }
     }
-
 
 }
